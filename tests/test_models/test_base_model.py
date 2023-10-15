@@ -62,5 +62,3 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(b7.first_name, "Sipho")
         self.assertIn("age", dicn2)
         self.assertIn("first_name", dicn2)
-
-
