@@ -53,3 +53,14 @@ class TestBaseModel(unittest.TestCase):
             if k != "created_at" and k != "updated_at":
                 self.assertIn(k, dicn)
 
+    def test_kwargs(self):
+        b7 = BaseModel()
+        b7.first_name = "Sipho"
+        b7.age = 34
+        dicn2 = b7.to_dict()
+        self.assertEqual(b7.age, 34)
+        self.assertEqual(b7.first_name, "Sipho")
+        self.assertIn("age", dicn2)
+        self.assertIn("first_name", dicn2)
+
+
