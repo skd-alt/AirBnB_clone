@@ -5,6 +5,7 @@
 import unittest
 from models.base_model import BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
     """Unittest for BaseModel"""
 
@@ -27,7 +28,9 @@ class TestBaseModel(unittest.TestCase):
         b4.id = "123"
         b4.created_at = "2023-10-19"
         b4.updated_at = "2023-10-19"
-        self.assertEqual("[BaseModel] (123) {'id': '123', 'created_at': '2023-10-19', 'updated_at': '2023-10-19'}", b4.__str__())
+        vtxt = ("[BaseModel] (123) {'id': '123', 'created_at': '2023-10-19', "
+                "'updated_at': '2023-10-19'}")
+        self.assertEqual(vtxt, b4.__str__())
 
     def test_save(self):
         b5 = BaseModel()
