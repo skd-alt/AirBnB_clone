@@ -25,13 +25,20 @@ class FileStorage:
             dicn = {k: v.to_dict() for (k, v) in FileStorage.__objects.items()}
             json.dump(dicn, f)
 
+    def classes(self):
+        from models.base_model import BaseModel
+        from models.user import User
+
+        classes = {"BaseModel": BaseModel,
+                "User": User}
+
+        return classes
+
     def reload(self):
         """deserializes the JSON file to __objects."""
-        from models.base_model import BaseModel
-
         if not os.path.isfile(FileStorage.__file_path):
             return
 
         with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
             obj_dicn = json.load(f)
-            FileStorage.__objects = {k: BaseModel(**v) for (k, v) in obj_dicn.items()}
+            FileStorage.__objects = {k: self.classes()[v["__class__"]](**v) for (k, v) in obj_dicn.items()}

@@ -2,6 +2,7 @@
 """Build the Console."""
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 import re
 
@@ -28,25 +29,23 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """Creates a new instance
         """
-        classes = ["BaseModel"]
         if line == "" or line is None:
             print("** class name missing **")
-        elif line not in classes:
+        elif line not in storage.classes():
             print("** class doesn't exist **")
         else:
-            b = BaseModel()
+            b = storage.classes()[line]()
             b.save()
             print(b.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance
         """
-        classes = ["BaseModel"]
         if line == "" or line is None:
             print("** class name missing **")
         else:
             args = line.split(' ')
-            if args[0] not in classes:
+            if args[0] not in storage.classes():
                 print("** class doesn't exist **")
             elif len(args) < 2:
                 print("** instance id missing **")
@@ -60,12 +59,11 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, line):
         """Deletes an instance based on the class name & id
         """
-        classes = ["BaseModel"]
         if line == "" or line is None:
             print("** class name missing **")
         else:
             args = line.split(' ')
-            if args[0] not in classes:
+            if args[0] not in storage.classes():
                 print("** class doesn't exist **")
             elif len(args) < 2:
                 print("** instance id missing **")
@@ -80,12 +78,11 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line):
         """Prints all string representation instances based or no class name
         """
-        classes = ["BaseModel"]
         if line == "" or line is None:
             list_objs = [str(v) for (k, v) in storage.all().items()]
             print(list_objs)
         else:
-            if line not in classes:
+            if line not in storage.classes():
                 print("** class doesn't exist **")
             else:
                 list_objs = [str(v) for (k, v) in storage.all().items()
@@ -95,12 +92,11 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         """Updates an instance based on the class name and id
         """
-        classes = ["BaseModel"]
         if line == "" or line is None:
             print("** class name missing **")
         else:
             args = line.split(' ')
-            if args[0] not in classes:
+            if args[0] not in storage.classes():
                 print("** class doesn't exist **")
             elif len(args) < 2:
                 print("** instance id missing **")
