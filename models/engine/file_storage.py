@@ -51,9 +51,6 @@ class FileStorage:
         if not os.path.isfile(FileStorage.__file_path):
             return
 
-        with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+        with open(FileStorage.__file_path, "r") as f:
             obj_dicn = json.load(f)
-            FileStorage.__objects = {
-                    k: self.classes()[v["__class__"]](**v)
-                    for (k, v) in obj_dicn.items()
-                    }
+            FileStorage.__objects = {k: self.classes()[v["__class__"]](**v) for (k, v) in obj_dicn.items()}

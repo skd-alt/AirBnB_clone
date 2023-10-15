@@ -88,3 +88,10 @@ class TestFileStorage(unittest.TestCase):
             self.assertIn("City." + cy.id, save_text)
             self.assertIn("Amenity." + am.id, save_text)
             self.assertIn("Review." + rv.id, save_text)
+
+    def test_reload(self):
+        b1 = BaseModel()
+        storage = FileStorage()
+        storage._FileStorage__objects = ""
+        storage.reload()
+        self.assertIn(b1, storage._FileStorage__objects)
