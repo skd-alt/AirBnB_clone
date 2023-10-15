@@ -3,6 +3,6 @@
 from models.base_model import BaseModel
 
 
-class Amenity:
+class Amenity(BaseModel):
     """Amenity object is created"""
     name = ""
