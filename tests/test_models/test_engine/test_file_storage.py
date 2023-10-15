@@ -13,6 +13,7 @@ from models.place import Place
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+from datetime import datetime
 
 
 class TestFileStorage(unittest.TestCase):
@@ -58,3 +59,32 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(am, storage.all().values())
         self.assertIn("Review." + rv.id, storage.all().keys())
         self.assertIn(rv, storage.all().values())
+
+    def test_save(self):
+        """test new function"""
+        storage = FileStorage()
+        bm = BaseModel()
+        us = User()
+        st = State()
+        pl = Place()
+        cy = City()
+        am = Amenity()
+        rv = Review()
+        storage.new(bm)
+        storage.new(us)
+        storage.new(st)
+        storage.new(pl)
+        storage.new(cy)
+        storage.new(am)
+        storage.new(rv)
+        storage.save()
+        save_text = ""
+        with open("file.json", "r") as f:
+            save_text = f.read()
+            self.assertIn("BaseModel." + bm.id, save_text)
+            self.assertIn("User." + us.id, save_text)
+            self.assertIn("State." + st.id, save_text)
+            self.assertIn("Place." + pl.id, save_text)
+            self.assertIn("City." + cy.id, save_text)
+            self.assertIn("Amenity." + am.id, save_text)
+            self.assertIn("Review." + rv.id, save_text)
