@@ -4,6 +4,7 @@
 
 import unittest
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
@@ -41,3 +42,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertLess(date1, b5.updated_at)
         self.assertEqual(date2, b5.created_at)
         self.assertEqual(id5, b5.id)
+
+    def test_to_dict(self):
+        b6 = BaseModel()
+        dicn = b6.to_dict()
+        self.assertEqual(dict, type(dicn))
+        self.assertEqual(b6.created_at.isoformat(), dicn["created_at"])
+        self.assertEqual(b6.updated_at.isoformat(), dicn["updated_at"])
+        for (k, v) in b6.__dict__.items():
+            if k != "created_at" and k != "updated_at":
+                self.assertIn(k, dicn)
+

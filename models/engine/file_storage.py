@@ -28,9 +28,21 @@ class FileStorage:
     def classes(self):
         from models.base_model import BaseModel
         from models.user import User
+        from models.amenity import Amenity
+        from models.review import Review
+        from models.state import State
+        from models.place import Place
+        from models.city import City
 
-        classes = {"BaseModel": BaseModel,
-                "User": User}
+        classes = {
+                "BaseModel": BaseModel,
+                "User": User,
+                "Place": Place,
+                "City": City,
+                "State": State,
+                "Review": Review,
+                "Amenity": Amenity
+                }
 
         return classes
 
@@ -41,4 +53,7 @@ class FileStorage:
 
         with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
             obj_dicn = json.load(f)
-            FileStorage.__objects = {k: self.classes()[v["__class__"]](**v) for (k, v) in obj_dicn.items()}
+            FileStorage.__objects = {
+                    k: self.classes()[v["__class__"]](**v)
+                    for (k, v) in obj_dicn.items()
+                    }

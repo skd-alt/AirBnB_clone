@@ -4,6 +4,11 @@ import cmd
 from models.base_model import BaseModel
 from models.user import User
 from models import storage
+from models.amenity import Amenity
+from models.review import Review
+from models.state import State
+from models.place import Place
+from models.city import City
 import re
 
 
@@ -85,8 +90,10 @@ class HBNBCommand(cmd.Cmd):
             if line not in storage.classes():
                 print("** class doesn't exist **")
             else:
-                list_objs = [str(v) for (k, v) in storage.all().items()
-                        if type(v).__name__ == line]
+                list_objs = [
+                        str(v) for (k, v) in storage.all().items()
+                        if type(v).__name__ == line
+                        ]
                 print(list_objs)
 
     def do_update(self, line):
@@ -119,7 +126,6 @@ class HBNBCommand(cmd.Cmd):
                             value = int(args[3])
                     setattr(storage.all()[key_id], args[2], value)
                     storage.save()
-
 
 
 if __name__ == '__main__':
