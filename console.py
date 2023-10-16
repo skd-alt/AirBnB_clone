@@ -146,6 +146,13 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] in storage.classes() and args[1][:7] == "destroy":
             next_args = args[1].split('("')
             HBNBCommand.do_destroy(self, args[0] + " " + next_args[1][:-2])
+        elif args[0] in storage.classes() and args[1][:6] == "update":
+            next_args = args[1].split('("')
+            list_args = next_args[1][:-1].split(', ')
+            HBNBCommand.do_update(
+                    self, args[0] + " " + list_args[0][:-1] + " " +
+                    list_args[1][1:-1] + " " + list_args[2]
+                    )
 
 
 if __name__ == '__main__':
