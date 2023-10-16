@@ -133,17 +133,16 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split('.')
         if args[0] in storage.classes() and args[1] == "all()":
-            list_objs = [
-                    str(v) for (k, v) in storage.all().items()
-                    if type(v).__name__ == args[0]
-                    ]
-            print(list_objs)
-        if args[0] in storage.classes() and args[1] == "count()":
+            HBNBCommand.do_all(self, args[0])
+        elif args[0] in storage.classes() and args[1] == "count()":
             list_objs = [
                     str(v) for (k, v) in storage.all().items()
                     if type(v).__name__ == args[0]
                     ]
             print(len(list_objs))
+        elif args[0] in storage.classes() and args[1][:4] == "show":
+            next_args = args[1].split('("')
+            HBNBCommand.do_show(self, args[0] + " " + next_args[1][:-2])
 
 
 if __name__ == '__main__':
