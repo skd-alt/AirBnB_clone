@@ -147,12 +147,27 @@ class HBNBCommand(cmd.Cmd):
             next_args = args[1].split('("')
             HBNBCommand.do_destroy(self, args[0] + " " + next_args[1][:-2])
         elif args[0] in storage.classes() and args[1][:6] == "update":
-            next_args = args[1].split('("')
-            list_args = next_args[1][:-1].split(', ')
-            HBNBCommand.do_update(
-                    self, args[0] + " " + list_args[0][:-1] + " " +
-                    list_args[1][1:-1] + " " + list_args[2]
-                    )
+            if "{" in line and "}" in line:
+                wargs = line.split(', {')
+                nargs = wargs[1][:-1].split(', ')
+                for arg in nargs:
+                    if "}" in arg:
+                        arg = arg.replace("}", "")
+                    cargs = wargs[0].split('.')
+                    cnargs = cargs[1].split('("')
+                    targs = arg.split(": ")
+                    t = (
+                            cargs[0] + " " + cnargs[1][:-1] + " "
+                            + targs[0][1:-1] + " " + targs[1]
+                            )
+                    HBNBCommand.do_update(self, t)
+            else:
+                next_args = args[1].split('("')
+                list_args = next_args[1][:-1].split(', ')
+                HBNBCommand.do_update(
+                        self, args[0] + " " + list_args[0][:-1] + " " +
+                        list_args[1][1:-1] + " " + list_args[2]
+                        )
 
 
 if __name__ == '__main__':
