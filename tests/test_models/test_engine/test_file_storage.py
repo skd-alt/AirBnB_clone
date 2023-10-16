@@ -18,7 +18,7 @@ from datetime import datetime
 
 class TestFileStorage(unittest.TestCase):
     """Unittest for FileStorage"""
-    
+
     def test_class_attr(self):
         storage = FileStorage()
         self.assertIn("_FileStorage__file_path", dir(storage))

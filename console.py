@@ -128,5 +128,17 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
 
 
+    def default(self, line):
+        """when the command prefix is not recognized
+        """
+        args = line.split('.')
+        if args[0] in storage.classes() and args[1] == "all()":
+            list_objs = [
+                    str(v) for (k, v) in storage.all().items()
+                    if type(v).__name__ == args[0]
+                    ]
+            print(list_objs)
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
