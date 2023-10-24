@@ -1,0 +1,136 @@
+.places {
+  text-align:center;
+}
+
+.places h1 {
+  font-size: 30px;
+  text-align: left;
+}
+
+.places article {
+  border: 1px solid #FF5A5F;
+  border-radius: 4px;
+  margin: 20px;
+  padding: 20px;
+  width: 390px;
+  display: inline-block;
+}
+
+.places article h2 {
+  font-size: 30px;
+  text-align: center;
+}
+
+.price_by_night {
+  border: 4px solid #FF5A5F;
+  border-radius: 50%;
+  color: #FF5A5F;
+  min-width: 60px;
+  height: 60px;
+  font-size:30px;
+  float: right;
+  position: relative;
+  top: -80px;
+  line-height: 60px;
+}
+
+.information {
+  height: 80px;
+  border-top: 1px solid #DDDDDD;
+  border-bottom: 1px solid #DDDDDD;
+  display: flex;
+  justify-content: space-around;
+}
+
+.max_guest {
+  width: 100px;
+  display:inline-block;
+  background-image: url("../images/icon_group.png");
+  background-position: 50% 5px;
+  background-repeat: no-repeat;
+  line-height: 110px;
+}
+
+.number_rooms {
+  width: 100px;
+  display:inline-block;
+  background-image: url("../images/icon_group.png");
+  background-position: 50% 5px;
+  background-repeat: no-repeat;
+  line-height: 110px;
+}
+
+.number_bathrooms {
+  width: 100px;
+  background-image: url("../images/icon_group.png");
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 50% 5px;
+  line-height: 110px;
+}
+
+.user, .description {
+  text-align: left;
+  padding: 10px;
+}
+
+article .amenities {
+  width: 100%;
+  text-align: left;
+  margin:0;
+  padding:0;
+}
+
+article .amenities h2 {
+ font-size: 16px;
+ border-bottom: 1px solid #DDDDDD;
+ text-align: left;
+}
+
+article .amenities li {
+  margin: 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+.pets {
+  list-style: outside url("../images/icon_pets_resize.png");
+}
+
+.wifi {
+  list-style: outside url("../images/icon_wifi_resize.png");
+}
+
+.tv {
+  list-style: outside url("../images/icon_tv_resize.png");
+}
+
+article .reviews {
+  margin-top: 40px;
+}
+
+article .reviews h2 {
+  font-size: 16px;
+  border-bottom: 1px solid #DDDDDD;
+  text-align: left;
+}
+
+article .reviews ul {
+  list-style-type: none;
+}
+
+article .reviews ul li h3 {
+  font-size: 14px;
+  text-align: left;
+}
+
+article .reviews ul li p {
+  font-size: 12px;
+  text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+  .places {
+    margin-left: 10px;
+  }
+}
